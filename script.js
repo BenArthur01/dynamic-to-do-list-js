@@ -4,23 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Step 2: Select Key elements from the page
     // Using getElementById to grab the input field, buttom and task list
-    const addButton = document.getElementById("add-task");
+    const addButton = document.getElementById("add-task-btn");
     const taskInput = document.getElementById("task-input");
     const taskList = document.getElementById("task-list");
 
     // Step 3: Create the addTask Function
     // This function handles adding a new task
     function addTask() {
-        const listItem = document.createElement('li');
+        const taskText = taskInput.value.trim();
+
+        if (taskText === "") {
+            alert("Please enter a task.");
+            return;
+        }
+
+        const listItem = document.createElement("li");
         listItem.textContent = taskText;
  
         // Step 4: Task Creation & Removal
-        const removeButton = document.createElement('button');
+        const removeButton = document.createElement("button");
         removeButton.textContent = "Remove";
         removeButton.className = "remove-btn";
 
         removeButton.onclick = () => {
-            taskList.removeChild(listItem)
+            taskList.removeChild(listItem);
         };
 
         listItem.appendChild(removeButton);
@@ -38,6 +45,4 @@ document.addEventListener("DOMContentLoaded", () => {
             addTask();
         }
     });
-
-
 });
