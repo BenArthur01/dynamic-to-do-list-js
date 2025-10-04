@@ -1,0 +1,43 @@
+// Step 1: Setup event listener for page load
+document.addEventListener("DOMContentLoaded", () => {
+    // All the logic goes inside here
+
+    // Step 2: Select Key elements from the page
+    // Using getElementById to grab the input field, buttom and task list
+    const addButton = document.getElementById("add-task");
+    const taskInput = document.getElementById("task-input");
+    const taskList = document.getElementById("task-list");
+
+    // Step 3: Create the addTask Function
+    // This function handles adding a new task
+    function addTask() {
+        const listItem = document.createElement('li');
+        listItem.textContent = taskText;
+ 
+        // Step 4: Task Creation & Removal
+        const removeButton = document.createElement('button');
+        removeButton.textContent = "Remove";
+        removeButton.className = "remove-btn";
+
+        removeButton.onclick = () => {
+            taskList.removeChild(listItem)
+        };
+
+        listItem.appendChild(removeButton);
+        taskList.appendChild(listItem);
+
+        taskInput.value = "";  // Clear input field
+    }
+
+    //  Step 5: Add Event Listener
+    // Making the app respond to button clicks and enter key presses
+    addButton.addEventListener("click", addTask);
+
+    taskInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+
+
+});
