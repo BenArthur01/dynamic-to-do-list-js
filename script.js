@@ -2,11 +2,17 @@
 document.addEventListener("DOMContentLoaded", () => {
     // All the logic goes inside here
 
+
     // Step 2: Select Key elements from the page
     // Using getElementById to grab the input field, buttom and task list
     const addButton = document.getElementById("add-task-btn");
     const taskInput = document.getElementById("task-input");
     const taskList = document.getElementById("task-list");
+
+    if (!taskInput || !addButton || !taskList) {
+        console.error("Missing DOM elements. checks IDs: task-input, add-task-btn, task-list");
+        return;
+    }
 
     // Step 3: Create the addTask Function
     // This function handles adding a new task
@@ -34,15 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
         taskList.appendChild(listItem);
 
         taskInput.value = "";  // Clear input field
+        taskInput.focus();
     }
 
     //  Step 5: Add Event Listener
     // Making the app respond to button clicks and enter key presses
     addButton.addEventListener("click", addTask);
 
-    taskInput.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            addTask();
-        }
+    taskInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") addTask();
     });
 });
