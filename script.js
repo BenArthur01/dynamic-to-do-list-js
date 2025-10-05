@@ -24,13 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // Step 4: Task Creation & Removal
         const listItem = document.createElement("li");
         listItem.textContent = taskText;
  
-        // Step 4: Task Creation & Removal
         const removeButton = document.createElement("button");
         removeButton.textContent = "Remove";
         removeButton.className = "remove-btn";
+        removeButton.addEventListener("click", () => taskList.removeChild(listItem));
 
         removeButton.onclick = () => {
             taskList.removeChild(listItem);
